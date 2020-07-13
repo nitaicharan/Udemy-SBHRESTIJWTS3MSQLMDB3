@@ -1,8 +1,11 @@
 package com.nelioalves.cursomc.resources;
 
 import java.net.URI;
+import java.util.List;
+import java.util.stream.Collectors;
 
 import com.nelioalves.cursomc.domain.Categoria;
+import com.nelioalves.cursomc.dto.CategoriaDTO;
 import com.nelioalves.cursomc.services.CategoriaService;
 
 import org.springframework.http.ResponseEntity;
@@ -26,7 +29,8 @@ public class CategoriaResource {
 
   @GetMapping(value = "/{id}")
   public ResponseEntity<Categoria> find(@PathVariable Integer id) {
-    return ResponseEntity.ok().body(service.find(id));
+    Categoria obj = service.find(id);
+    return ResponseEntity.ok().body(obj);
   }
 
   @PostMapping
@@ -47,5 +51,12 @@ public class CategoriaResource {
   public ResponseEntity<Void> delete(@PathVariable Integer id) {
     service.delete(id);
     return ResponseEntity.noContent().build();
+  }
+
+  @GetMapping
+  public ResponseEntity<List<CategoriaDTO>> findAll() {
+    List<Categoria> list = service.findAll();
+    List<CategoriaDTO> listDto = list.stream().map(CategoriaDTO::new).collect(Collectors.toList());
+    return ResponseEntity.ok().body(listDto);
   }
 }

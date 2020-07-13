@@ -1,5 +1,6 @@
 package com.nelioalves.cursomc.services;
 
+import java.util.List;
 import java.util.Optional;
 
 import com.nelioalves.cursomc.domain.Categoria;
@@ -40,5 +41,9 @@ public class CategoriaService {
 		} catch (DataIntegrityViolationException exception) {
 			throw new DataIntegrityException("Não é possível excluir uma categoria que possui produtos");
 		}
+	}
+
+	public List<Categoria> findAll() {
+		return repository.findAll();
 	}
 }
