@@ -8,6 +8,7 @@ import com.nelioalves.cursomc.domain.Categoria;
 import com.nelioalves.cursomc.dto.CategoriaDTO;
 import com.nelioalves.cursomc.services.CategoriaService;
 
+import org.springframework.data.domain.Page;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -16,6 +17,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
@@ -57,6 +59,16 @@ public class CategoriaResource {
   public ResponseEntity<List<CategoriaDTO>> findAll() {
     List<Categoria> list = service.findAll();
     List<CategoriaDTO> listDto = list.stream().map(CategoriaDTO::new).collect(Collectors.toList());
+    return ResponseEntity.ok().body(listDto);
+  }
+
+  @GetMapping("/page")
+  public ResponseEntity<Page<CategoriaDTO>> findPage(@RequestParam(defaultValue = "0") Integer page,
+      @RequestParam(defaultValue = "24") Integer size,
+      @RequestParam(defaultValue = "nome") String orderBy,
+      @RequestParam(defaultValue = "ASC") String direction) {
+    Page<Categoria> list = service.findPage(page, size, orderBy, direction);
+    Page<CategoriaDTO> listDto = list.map(CategoriaDTO::new);
     return ResponseEntity.ok().body(listDto);
   }
 }

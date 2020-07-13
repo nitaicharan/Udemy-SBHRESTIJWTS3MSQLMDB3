@@ -9,6 +9,9 @@ import com.nelioalves.cursomc.services.exceptions.DataIntegrityException;
 import com.nelioalves.cursomc.services.exceptions.ObjectNotFoundException;
 
 import org.springframework.dao.DataIntegrityViolationException;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Sort.Direction;
 import org.springframework.stereotype.Service;
 
 import lombok.AllArgsConstructor;
@@ -45,5 +48,10 @@ public class CategoriaService {
 
 	public List<Categoria> findAll() {
 		return repository.findAll();
+	}
+
+	public Page<Categoria> findPage(Integer page, Integer size, String orderBy, String direction) {
+		PageRequest pageRequest = PageRequest.of(page, size, Direction.valueOf(direction), orderBy);
+		return repository.findAll(pageRequest);
 	}
 }
