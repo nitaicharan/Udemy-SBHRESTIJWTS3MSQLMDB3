@@ -38,13 +38,13 @@ import lombok.AllArgsConstructor;
 @SpringBootApplication
 public class CursomcApplication implements CommandLineRunner {
 
-	private CategoriaRepository categoriaRepository;
-	private ProdutoRepository produtoRepository;
 	private EstadoRepository estadoRepository;
 	private CidadeRepository cidadeRepository;
-	private ClienteRepository clienteRepository;
-	private EnderecoRepository enderecoRepository;
 	private PedidoRepository pedidoRepository;
+	private ClienteRepository clienteRepository;
+	private ProdutoRepository produtoRepository;
+	private EnderecoRepository enderecoRepository;
+	private CategoriaRepository categoriaRepository;
 	private PagamentoRepository pagamentoRepository;
 	private ItemPedidoRepository itemPedidoRepository;
 
