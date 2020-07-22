@@ -13,7 +13,7 @@ import lombok.AllArgsConstructor;
 @Service
 @AllArgsConstructor
 public class CategoriaService {
-    private CategoriaRepository repository;
+	private CategoriaRepository repository;
 
 	public Categoria find(Integer id) {
 		Optional<Categoria> obj = repository.findById(id);
@@ -21,8 +21,13 @@ public class CategoriaService {
 				"Objeto não encontrado! Id: " + id + ", Tipo: " + Categoria.class.getName()));
 	}
 
-	public Categoria insert(Categoria obj){
+	public Categoria insert(Categoria obj) {
 		obj.setId(null);
+		return repository.save(obj);
+	}
+
+	public Categoria update(Categoria obj) {
+		this.find(obj.getId());
 		return repository.save(obj);
 	}
 }
