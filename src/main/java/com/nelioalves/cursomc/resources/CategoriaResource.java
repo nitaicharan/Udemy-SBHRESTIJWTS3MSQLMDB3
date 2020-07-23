@@ -4,6 +4,8 @@ import java.net.URI;
 import java.util.List;
 import java.util.stream.Collectors;
 
+import javax.validation.Valid;
+
 import com.nelioalves.cursomc.domain.Categoria;
 import com.nelioalves.cursomc.dto.CategoriaDTO;
 import com.nelioalves.cursomc.services.CategoriaService;
@@ -36,16 +38,16 @@ public class CategoriaResource {
   }
 
   @PostMapping
-  public ResponseEntity<Void> insert(@RequestBody Categoria obj) {
-    service.insert(obj);
-    URI uri = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}").buildAndExpand(obj.getId()).toUri();
+  public ResponseEntity<Void> insert(@Valid @RequestBody CategoriaDTO dto) {
+    service.insert(dto.toEntity());
+    URI uri = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}").buildAndExpand(dto.getId()).toUri();
     return ResponseEntity.created(uri).build();
   }
 
   @PutMapping("/{id}")
-  public ResponseEntity<Void> update(@RequestBody Categoria obj, @PathVariable Integer id) {
-    obj.setId(id);
-    service.update(obj);
+  public ResponseEntity<Void> update(@Valid @RequestBody CategoriaDTO dto, @PathVariable Integer id) {
+    dto.setId(id);
+    service.update(dto.toEntity());
     return ResponseEntity.noContent().build();
   }
 
