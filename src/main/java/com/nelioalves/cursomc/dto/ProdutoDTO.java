@@ -2,6 +2,8 @@ package com.nelioalves.cursomc.dto;
 
 import java.io.Serializable;
 
+import com.nelioalves.cursomc.domain.Produto;
+
 import lombok.Getter;
 import lombok.Setter;
 
@@ -13,4 +15,10 @@ public class ProdutoDTO implements Serializable {
 	private Integer id;
 	private String nome;
 	private Double preco;
+
+	public ProdutoDTO(Produto obj) {
+		id = obj.getId();
+		nome = obj.getNome();
+		preco = obj.getPreco();
+	}
 }
