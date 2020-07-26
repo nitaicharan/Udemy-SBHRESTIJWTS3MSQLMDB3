@@ -6,6 +6,7 @@ import javax.validation.constraints.Email;
 import javax.validation.constraints.NotEmpty;
 
 import com.nelioalves.cursomc.domain.Cliente;
+import com.nelioalves.cursomc.services.validation.ClienteUpdate;
 
 import org.hibernate.validator.constraints.Length;
 
@@ -15,6 +16,7 @@ import lombok.Setter;
 
 @Getter
 @Setter
+@ClienteUpdate
 @NoArgsConstructor
 public class ClienteDTO implements Serializable {
     private static final long serialVersionUID = 1L;
