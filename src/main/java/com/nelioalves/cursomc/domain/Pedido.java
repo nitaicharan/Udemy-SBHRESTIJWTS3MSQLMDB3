@@ -49,6 +49,10 @@ public class Pedido implements Serializable {
 	@JoinColumn(name = "endereco_de_entrega_id")
 	private Endereco enderecoDeEntrega;
 
+	public double getValorTotal() {
+		return itens.stream().reduce(0.0, (total, item) -> total + item.getSubTotal(), Double::sum);
+	}
+
 	public Pedido(Integer id, Date instante, Cliente cliente, Endereco enderecoDeEntrega) {
 		super();
 		this.id = id;
