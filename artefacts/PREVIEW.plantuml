@@ -1,0 +1,17 @@
+@startuml
+title Udemy-SBHRESTIJWTS3MSQLMDB1
+
+package com.course{
+  class CourseApplication {
+    {static} +void man()
+  }
+
+  package dominio{
+    class Pessoa {
+      - Integer id
+      + string nome
+    }
+  }
+}
+
+@enduml
