@@ -3,9 +3,10 @@ package com.nelioalves.cursomc.config;
 
 import java.text.ParseException;
 
+import javax.annotation.PostConstruct;
+
 import com.nelioalves.cursomc.services.DBService;
 
-import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Profile;
 
@@ -18,9 +19,8 @@ public class TestConfig {
 
     private DBService dbService;
 
-    @Bean
-    public boolean instantiateDatabase() throws ParseException {
+    @PostConstruct
+    public void instantiateDatabase() throws ParseException {
         dbService.instantiateTestDatabase();
-        return true;
     }
 }

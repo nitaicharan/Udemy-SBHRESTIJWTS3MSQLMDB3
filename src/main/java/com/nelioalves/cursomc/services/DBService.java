@@ -35,6 +35,7 @@ import lombok.AllArgsConstructor;
 
 @Service
 @AllArgsConstructor
+// @ConditionalOnExpression("!${spring.jpa.hibernate.ddl-auto}.equals('create')")
 public class DBService {
 
 	private EstadoRepository estadoRepository;
@@ -47,6 +48,7 @@ public class DBService {
 	private PagamentoRepository pagamentoRepository;
 	private ItemPedidoRepository itemPedidoRepository;
 
+	// @PostConstruct
 	public void instantiateTestDatabase() throws ParseException {
 
 		Categoria cat1 = new Categoria(null, "Informática", new ArrayList<Produto>());
