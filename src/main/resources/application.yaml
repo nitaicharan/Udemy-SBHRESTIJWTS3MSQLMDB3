@@ -3,5 +3,9 @@ spring:
     active:
     - dev
 
+
 default.sender: ${UDEMYSBHRESTIJWTS3MSQLMDB3_SENDER:}
 default.recipient: ${UDEMYSBHRESTIJWTS3MSQLMDB3_RECIPIENT:}
+
+jwt.secret: SequenciaDeCaracteresParaAssinarToken
+jwt.expiration: 60000
