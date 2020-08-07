@@ -65,7 +65,7 @@ public class ClienteNewDTO implements Serializable {
 	private Integer cidadeId;
 
 	public Cliente toCliente() {
-		return Cliente.builder().nome(nome).email(email).cpfOuCnpj(cpfOuCnpj).tipo(TipoCliente.toEnum(tipo).getCod()).build();
+		return Cliente.builder().nome(nome).email(email).cpfOuCnpj(cpfOuCnpj).tipo(TipoCliente.toEnum(tipo).getCod()).senha(senha).build();
 	}
 
 	public Set<String> toTelefones() {

@@ -15,6 +15,7 @@ import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Sort.Direction;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import lombok.AllArgsConstructor;
@@ -24,6 +25,7 @@ import lombok.AllArgsConstructor;
 public class ClienteService {
 	private ClienteRepository repository;
 	private EnderecoRepository enderecoRepository;
+	private BCryptPasswordEncoder bcCryptPasswordEncoder;
 
 	public Cliente find(Integer id) {
 		Optional<Cliente> obj = repository.findById(id);
@@ -34,6 +36,7 @@ public class ClienteService {
 	@Transactional
 	public Cliente insert(Cliente obj) {
 		obj.setId(null);
+		obj.setSenha(toBCryptPasswordEncoder(obj.getSenha()));
 		obj = repository.save(obj);
 		enderecoRepository.saveAll(obj.getEnderecos());
 		return obj;
@@ -66,5 +69,10 @@ public class ClienteService {
 	private void updateData(Cliente newObj, Cliente obj) {
 		newObj.setNome(obj.getNome());
 		newObj.setEmail(obj.getEmail());
+		newObj.setSenha(toBCryptPasswordEncoder(obj.getSenha()));
+	}
+
+	private String toBCryptPasswordEncoder(String senha) {
+		return bcCryptPasswordEncoder.encode(senha);
 	}
 }
