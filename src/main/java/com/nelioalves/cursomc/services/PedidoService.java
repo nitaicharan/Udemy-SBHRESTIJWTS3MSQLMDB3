@@ -22,6 +22,7 @@ import lombok.AllArgsConstructor;
 @AllArgsConstructor
 public class PedidoService {
 
+	private EmailService emailService;
 	private BoletoService boletoService;
 	private PedidoRepository repository;
 	private ClienteService clienteService;
@@ -55,7 +56,7 @@ public class PedidoService {
 			ip.setPedido(obj);
 		}
 		itemPedidoRepository.saveAll(obj.getItens());
-		System.out.println(obj);
+		emailService.sendOrderConfirmationEmail(obj);
 		return obj;
 	}
 }

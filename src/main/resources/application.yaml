@@ -2,3 +2,6 @@ spring:
   profiles:
     active:
     - dev
+
+default.sender: nitaicharan@gmail.com
+default.recipient: nitaicharan@gmail.com
