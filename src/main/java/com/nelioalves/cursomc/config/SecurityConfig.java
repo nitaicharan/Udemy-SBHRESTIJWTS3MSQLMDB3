@@ -2,6 +2,9 @@ package com.nelioalves.cursomc.config;
 
 import java.util.Arrays;
 
+import com.nelioalves.cursomc.security.JWTAuthenticationFilter;
+import com.nelioalves.cursomc.security.JWTUtil;
+
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.core.env.Environment;
@@ -24,6 +27,7 @@ import lombok.AllArgsConstructor;
 @AllArgsConstructor
 public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
+    private JWTUtil jwtUtil;
     private Environment env;
     private UserDetailsService service;
     private static final String[] PUBLIC_MATCHERS = { "/h2-console/**" };
@@ -39,6 +43,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
         http.cors().and().csrf().disable();
         http.authorizeRequests().antMatchers(HttpMethod.GET, PUBLIC_MATCHERS_GET).permitAll()
                 .antMatchers(PUBLIC_MATCHERS).permitAll().anyRequest().authenticated();
+        http.addFilter(new JWTAuthenticationFilter(authenticationManager(), jwtUtil));
         http.sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS);
     }
 

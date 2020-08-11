@@ -1,20 +1,17 @@
 package com.nelioalves.cursomc.security;
 
 import java.util.Collection;
-import java.util.Set;
 import java.util.stream.Collectors;
 
-import com.nelioalves.cursomc.domain.enums.Perfil;
+import com.nelioalves.cursomc.domain.Cliente;
 
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
 import lombok.Getter;
-import lombok.Setter;
 
 @Getter
-@Setter
 public class UserSpringSecurity implements UserDetails {
 	private static final long serialVersionUID = 1L;
 
@@ -23,11 +20,11 @@ public class UserSpringSecurity implements UserDetails {
 	private String senha;
 	private Collection<? extends GrantedAuthority> authorities;
 
-	public UserSpringSecurity(Integer id, String email, String senha, Set<Perfil> perfis) {
-		this.id = id;
-		this.email = email;
-		this.senha = senha;
-		this.authorities = perfis.stream().map(x -> new SimpleGrantedAuthority(x.getDescricao()))
+	public UserSpringSecurity(Cliente cliente) {
+		this.id = cliente.getId();
+		this.email = cliente.getEmail();
+		this.senha = cliente.getSenha();
+		this.authorities = cliente.getPerfis().stream().map(x -> new SimpleGrantedAuthority(x.getDescricao()))
 				.collect(Collectors.toList());
 	}
 

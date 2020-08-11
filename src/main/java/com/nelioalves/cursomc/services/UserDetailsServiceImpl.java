@@ -1,6 +1,7 @@
 package com.nelioalves.cursomc.services;
 
-import com.nelioalves.cursomc.domain.Cliente;
+import java.util.Optional;
+
 import com.nelioalves.cursomc.repositories.ClienteRepository;
 import com.nelioalves.cursomc.security.UserSpringSecurity;
 
@@ -19,11 +20,7 @@ public class UserDetailsServiceImpl implements UserDetailsService {
 
     @Override
     public UserDetails loadUserByUsername(String email) throws UsernameNotFoundException {
-        Cliente cli = repository.findByEmail(email);
-        if (cli == null) {
-            throw new UsernameNotFoundException(email);
-        }
-        
-        return new UserSpringSecurity(cli.getId(), cli.getEmail(), cli.getSenha(), cli.getPerfis());
+        return Optional.of(repository.findByEmail(email)).map(UserSpringSecurity::new)
+                .orElseThrow(() -> new UsernameNotFoundException(email));
     }
 }
