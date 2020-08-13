@@ -4,6 +4,7 @@ import java.util.Collection;
 import java.util.stream.Collectors;
 
 import com.nelioalves.cursomc.domain.Cliente;
+import com.nelioalves.cursomc.domain.enums.Perfil;
 
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
@@ -60,5 +61,9 @@ public class UserSpringSecurity implements UserDetails {
 	@Override
 	public String getUsername() {
 		return this.senha;
+	}
+
+	public boolean hasRole(Perfil perfil) {
+		return getAuthorities().contains(new SimpleGrantedAuthority(perfil.getDescricao()));
 	}
 }

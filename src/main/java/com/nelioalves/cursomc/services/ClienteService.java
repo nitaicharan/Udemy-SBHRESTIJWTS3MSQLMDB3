@@ -6,8 +6,10 @@ import java.util.Optional;
 import javax.transaction.Transactional;
 
 import com.nelioalves.cursomc.domain.Cliente;
+import com.nelioalves.cursomc.domain.enums.Perfil;
 import com.nelioalves.cursomc.repositories.ClienteRepository;
 import com.nelioalves.cursomc.repositories.EnderecoRepository;
+import com.nelioalves.cursomc.services.exceptions.AuthorizationException;
 import com.nelioalves.cursomc.services.exceptions.DataIntegrityException;
 import com.nelioalves.cursomc.services.exceptions.ObjectNotFoundException;
 
@@ -28,6 +30,13 @@ public class ClienteService {
 	private BCryptPasswordEncoder bcCryptPasswordEncoder;
 
 	public Cliente find(Integer id) {
+		var userSpringSecurity = UserService.authenticated();
+
+		if (userSpringSecurity == null
+				|| !userSpringSecurity.hasRole(Perfil.ADMIN) && !id.equals(userSpringSecurity.getId())) {
+			throw new AuthorizationException("Acesso negado");
+		}
+
 		Optional<Cliente> obj = repository.findById(id);
 		return obj.orElseThrow(() -> new ObjectNotFoundException(
 				"Objeto não encontrado! Id: " + id + ", Tipo: " + Cliente.class.getName()));
