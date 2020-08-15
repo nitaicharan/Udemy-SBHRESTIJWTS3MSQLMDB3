@@ -5,6 +5,7 @@ import java.util.Date;
 import javax.mail.MessagingException;
 import javax.mail.internet.MimeMessage;
 
+import com.nelioalves.cursomc.domain.Cliente;
 import com.nelioalves.cursomc.domain.Pedido;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -31,12 +32,6 @@ public abstract class AbstractEmailService implements EmailService {
         sendEmail(prepareSimpleMailMessageFromPedido(obj));
     }
 
-    protected String htmlFromTemplatePedido(Pedido obj) {
-        Context context = new Context();
-        context.setVariable("pedido", obj);
-        return templateEngine.process("email/confirmacaoPedido", context);
-    }
-
     @Override
     public void sendOrderConfirmationHtmlEmail(Pedido obj) {
         try {
@@ -45,6 +40,12 @@ public abstract class AbstractEmailService implements EmailService {
         } catch (MessagingException e) {
             sendOrderConfirmationEmail(obj);
         }
+    }
+
+    @Override
+    public void sendNewPasswordEmail(Cliente cliente, String newPass) {
+        SimpleMailMessage sm = prepareNewPasswordEmail(cliente, newPass);
+        sendEmail(sm);
     }
 
     protected MimeMessage prepareMimeMessageFromPedido(Pedido obj) throws MessagingException {
@@ -66,5 +67,21 @@ public abstract class AbstractEmailService implements EmailService {
         sm.setSentDate(new Date(System.currentTimeMillis()));
         sm.setText(obj.toString());
         return sm;
+    }
+
+    protected SimpleMailMessage prepareNewPasswordEmail(Cliente cliente, String newPass) {
+        SimpleMailMessage sm = new SimpleMailMessage();
+        sm.setTo(cliente.getEmail());
+        sm.setFrom(sender);
+        sm.setSubject("Solicitação de nova senha");
+        sm.setSentDate(new Date(System.currentTimeMillis()));
+        sm.setText("Nova senha: " + newPass);
+        return sm;
+    }
+
+    protected String htmlFromTemplatePedido(Pedido obj) {
+        Context context = new Context();
+        context.setVariable("pedido", obj);
+        return templateEngine.process("email/confirmacaoPedido", context);
     }
 }
