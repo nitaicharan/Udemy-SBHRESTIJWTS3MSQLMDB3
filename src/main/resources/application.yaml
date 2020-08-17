@@ -4,8 +4,15 @@ spring:
     - dev
 
 
-default.sender: ${UDEMYSBHRESTIJWTS3MSQLMDB3_SENDER:}
-default.recipient: ${UDEMYSBHRESTIJWTS3MSQLMDB3_RECIPIENT:}
+default.sender: ${UDEMYSBHRESTIJWTS3MSQLMDB3_SENDER}
+default.recipient: ${UDEMYSBHRESTIJWTS3MSQLMDB3_RECIPIENT}
 
 jwt.secret: SequenciaDeCaracteresParaAssinarToken
-jwt.expiration: 60000
+jwt.expiration: 86400000
+
+aws:
+  access_key_id: ${UDEMYSBHRESTIJWTS3MSQLMDB3_AWS_ID}
+  secret_access_key: ${UDEMYSBHRESTIJWTS3MSQLMDB3_AWS_KEY}
+s3:
+  bucket: udemy-sbhrestijwts3msqlmdb3
+  region: sa-east-1

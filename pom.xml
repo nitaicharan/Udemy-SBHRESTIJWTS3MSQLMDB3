@@ -47,6 +47,20 @@
       <version>0.7.0</version>
     </dependency>
 
+    <!-- AWS SDK -->
+    <dependency>
+      <groupId>com.amazonaws</groupId>
+      <artifactId>aws-java-sdk</artifactId>
+      <version>LATEST</version>
+    </dependency>
+
+    <!-- COMMONS IO -->
+    <dependency>
+      <groupId>commons-io</groupId>
+      <artifactId>commons-io</artifactId>
+      <version>LATEST</version>
+    </dependency>
+
     <!-- *********** Swagger *********** -->
 
     <!-- springfox-swagger2 -->
