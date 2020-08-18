@@ -23,6 +23,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 import lombok.AllArgsConstructor;
@@ -44,8 +45,7 @@ public class ClienteResource {
 	public ResponseEntity<Void> insert(@Valid @RequestBody ClienteNewDTO dto) {
 		var obj = service.insert(dto.toEntity());
 
-		URI uri = ServletUriComponentsBuilder.fromCurrentRequest()
-				.path("/{id}").buildAndExpand(obj.getId()).toUri();
+		URI uri = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}").buildAndExpand(obj.getId()).toUri();
 		return ResponseEntity.created(uri).build();
 	}
 
@@ -79,5 +79,11 @@ public class ClienteResource {
 		Page<Cliente> list = service.findPage(page, size, orderBy, direction);
 		Page<ClienteDTO> listDto = list.map(ClienteDTO::new);
 		return ResponseEntity.ok().body(listDto);
+	}
+
+	@PostMapping("/picture")
+	public ResponseEntity<Void> uploadProfilePicture(@RequestParam MultipartFile file) {
+		URI uri = service.uploadProfilePicture(file);
+		return ResponseEntity.created(uri).build();
 	}
 }

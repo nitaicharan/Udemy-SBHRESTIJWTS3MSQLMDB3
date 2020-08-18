@@ -1,5 +1,6 @@
 package com.nelioalves.cursomc.services;
 
+import java.net.URI;
 import java.util.List;
 import java.util.Optional;
 
@@ -19,12 +20,15 @@ import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Sort.Direction;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
+import org.springframework.web.multipart.MultipartFile;
 
 import lombok.AllArgsConstructor;
 
 @Service
 @AllArgsConstructor
 public class ClienteService {
+	
+	private S3Service s3Service;
 	private ClienteRepository repository;
 	private EnderecoRepository enderecoRepository;
 	private BCryptPasswordEncoder bcCryptPasswordEncoder;
@@ -83,5 +87,9 @@ public class ClienteService {
 
 	private String toBCryptPasswordEncoder(String senha) {
 		return bcCryptPasswordEncoder.encode(senha);
+	}
+
+	public URI uploadProfilePicture(MultipartFile multipartFile) {
+		return s3Service.uploadFile(multipartFile);
 	}
 }
