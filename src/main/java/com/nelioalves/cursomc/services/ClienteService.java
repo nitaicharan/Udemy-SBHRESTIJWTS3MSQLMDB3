@@ -27,7 +27,7 @@ import lombok.AllArgsConstructor;
 @Service
 @AllArgsConstructor
 public class ClienteService {
-	
+
 	private S3Service s3Service;
 	private ClienteRepository repository;
 	private EnderecoRepository enderecoRepository;
@@ -90,6 +90,16 @@ public class ClienteService {
 	}
 
 	public URI uploadProfilePicture(MultipartFile multipartFile) {
-		return s3Service.uploadFile(multipartFile);
+
+		var userSpringSecurity = Optional.of(UserService.authenticated())
+				.orElseThrow(() -> new AuthorizationException("Acesso negado"));
+
+		URI uri = s3Service.uploadFile(multipartFile);
+
+		Cliente cli = find(userSpringSecurity.getId());
+		cli.setImageUrl(uri.toString());
+		repository.save(cli);
+
+		return uri;
 	}
 }

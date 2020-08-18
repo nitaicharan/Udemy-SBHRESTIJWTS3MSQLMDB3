@@ -105,10 +105,14 @@ public class DBService {
 		cidadeRepository.saveAll(Arrays.asList(c1, c2, c3));
 
 		Cliente cli1 = new Cliente(null, "Maria Silva", "nitaicharan@gmail.com", "36378912377",
-				TipoCliente.PESSOAFISICA, bCryptPasswordEncoder.encode("123"));
+				TipoCliente.PESSOAFISICA,
+				"https://www.google.com/images/branding/googlelogo/1x/googlelogo_color_272x92dp.png",
+				bCryptPasswordEncoder.encode("123"));
 		cli1.getTelefones().addAll(Arrays.asList("27363323", "93838393"));
 
-		Cliente cli2 = new Cliente(null, "Ana Costa", "nitaicharan@outlook.com", "31628382740", TipoCliente.PESSOAFISICA,
+		Cliente cli2 = new Cliente(null, "Ana Costa", "nitaicharan@outlook.com", "31628382740",
+				TipoCliente.PESSOAFISICA,
+				"https://www.google.com/images/branding/googlelogo/1x/googlelogo_color_272x92dp.png",
 				bCryptPasswordEncoder.encode("123"));
 		cli2.getTelefones().addAll(Arrays.asList("93883321", "34252625"));
 		cli2.addPerfil(Perfil.ADMIN);
