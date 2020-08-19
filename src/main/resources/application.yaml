@@ -16,3 +16,5 @@ aws:
 s3:
   bucket: udemy-sbhrestijwts3msqlmdb3
   region: sa-east-1
+
+img.prefix.client.profile: cp
