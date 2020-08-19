@@ -29,10 +29,6 @@ public class UserSpringSecurity implements UserDetails {
 				.collect(Collectors.toList());
 	}
 
-	public Integer getId() {
-		return id;
-	}
-
 	@Override
 	public boolean isAccountNonExpired() {
 		return true;
@@ -54,12 +50,12 @@ public class UserSpringSecurity implements UserDetails {
 	}
 
 	@Override
-	public String getPassword() {
+	public String getUsername() {
 		return this.email;
 	}
 
 	@Override
-	public String getUsername() {
+	public String getPassword() {
 		return this.senha;
 	}
 

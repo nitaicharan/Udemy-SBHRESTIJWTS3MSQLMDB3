@@ -15,6 +15,7 @@ import com.nelioalves.cursomc.services.exceptions.AuthorizationException;
 import com.nelioalves.cursomc.services.exceptions.DataIntegrityException;
 import com.nelioalves.cursomc.services.exceptions.ObjectNotFoundException;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.data.domain.Page;
@@ -24,18 +25,23 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
-import lombok.AllArgsConstructor;
-
 @Service
-@AllArgsConstructor
 public class ClienteService {
 
 	@Value("${img.prefix.client.profile}")
-	private ImageService imageService;
 	private String prefix;
+	@Value("${img.profile.size}")
+	private Integer size;
+	
+	@Autowired
+	private ImageService imageService;
+	@Autowired
 	private S3Service s3Service;
+	@Autowired
 	private ClienteRepository repository;
+	@Autowired
 	private EnderecoRepository enderecoRepository;
+	@Autowired
 	private BCryptPasswordEncoder bcCryptPasswordEncoder;
 
 	public Cliente find(Integer id) {
@@ -100,6 +106,8 @@ public class ClienteService {
 				.orElseThrow(() -> new AuthorizationException("Acesso negado"));
 
 		BufferedImage jpgImage = imageService.getJpgImageFromFile(multipartFile);
+		jpgImage = imageService.cropSquare(jpgImage);
+		jpgImage = imageService.resize(jpgImage, size);
 		String fileName = prefix + userSpringSecurity.getId() + ".jpg";
 
 		return s3Service.uploadFile(imageService.getInputStream(jpgImage, "jpg"), fileName, "image");
