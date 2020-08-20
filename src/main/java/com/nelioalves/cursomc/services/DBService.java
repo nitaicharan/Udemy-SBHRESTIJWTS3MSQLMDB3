@@ -74,7 +74,51 @@ public class DBService {
 		Produto p10 = new Produto(null, "Pendente", 180.00, new ArrayList<Categoria>(), new HashSet<>());
 		Produto p11 = new Produto(null, "Shampoo", 90.00, new ArrayList<Categoria>(), new HashSet<>());
 
-		cat1.getProdutos().addAll(Arrays.asList(p1, p2, p3));
+		Produto p12 = new Produto(null, "Produto 12", 90.00, new ArrayList<Categoria>(), new HashSet<>());
+		Produto p13 = new Produto(null, "Produto 13", 90.00, new ArrayList<Categoria>(), new HashSet<>());
+		Produto p14 = new Produto(null, "Produto 14", 90.00, new ArrayList<Categoria>(), new HashSet<>());
+		Produto p15 = new Produto(null, "Produto 15", 90.00, new ArrayList<Categoria>(), new HashSet<>());
+		Produto p16 = new Produto(null, "Produto 16", 90.00, new ArrayList<Categoria>(), new HashSet<>());
+		Produto p17 = new Produto(null, "Produto 17", 90.00, new ArrayList<Categoria>(), new HashSet<>());
+		Produto p18 = new Produto(null, "Produto 18", 90.00, new ArrayList<Categoria>(), new HashSet<>());
+		Produto p19 = new Produto(null, "Produto 19", 90.00, new ArrayList<Categoria>(), new HashSet<>());
+		Produto p20 = new Produto(null, "Produto 20", 90.00, new ArrayList<Categoria>(), new HashSet<>());
+		Produto p21 = new Produto(null, "Produto 21", 90.00, new ArrayList<Categoria>(), new HashSet<>());
+		Produto p22 = new Produto(null, "Produto 22", 90.00, new ArrayList<Categoria>(), new HashSet<>());
+		Produto p23 = new Produto(null, "Produto 23", 90.00, new ArrayList<Categoria>(), new HashSet<>());
+		Produto p24 = new Produto(null, "Produto 24", 90.00, new ArrayList<Categoria>(), new HashSet<>());
+		Produto p25 = new Produto(null, "Produto 25", 90.00, new ArrayList<Categoria>(), new HashSet<>());
+		Produto p26 = new Produto(null, "Produto 26", 90.00, new ArrayList<Categoria>(), new HashSet<>());
+		Produto p27 = new Produto(null, "Produto 27", 90.00, new ArrayList<Categoria>(), new HashSet<>());
+		Produto p28 = new Produto(null, "Produto 28", 90.00, new ArrayList<Categoria>(), new HashSet<>());
+		Produto p29 = new Produto(null, "Produto 29", 90.00, new ArrayList<Categoria>(), new HashSet<>());
+		Produto p30 = new Produto(null, "Produto 30", 90.00, new ArrayList<Categoria>(), new HashSet<>());
+		Produto p31 = new Produto(null, "Produto 31", 90.00, new ArrayList<Categoria>(), new HashSet<>());
+		Produto p32 = new Produto(null, "Produto 32", 90.00, new ArrayList<Categoria>(), new HashSet<>());
+		Produto p33 = new Produto(null, "Produto 33", 90.00, new ArrayList<Categoria>(), new HashSet<>());
+		Produto p34 = new Produto(null, "Produto 34", 90.00, new ArrayList<Categoria>(), new HashSet<>());
+		Produto p35 = new Produto(null, "Produto 35", 90.00, new ArrayList<Categoria>(), new HashSet<>());
+		Produto p36 = new Produto(null, "Produto 36", 90.00, new ArrayList<Categoria>(), new HashSet<>());
+		Produto p37 = new Produto(null, "Produto 37", 90.00, new ArrayList<Categoria>(), new HashSet<>());
+		Produto p38 = new Produto(null, "Produto 38", 90.00, new ArrayList<Categoria>(), new HashSet<>());
+		Produto p39 = new Produto(null, "Produto 39", 90.00, new ArrayList<Categoria>(), new HashSet<>());
+		Produto p40 = new Produto(null, "Produto 40", 90.00, new ArrayList<Categoria>(), new HashSet<>());
+		Produto p41 = new Produto(null, "Produto 41", 90.00, new ArrayList<Categoria>(), new HashSet<>());
+		Produto p42 = new Produto(null, "Produto 42", 90.00, new ArrayList<Categoria>(), new HashSet<>());
+		Produto p43 = new Produto(null, "Produto 43", 90.00, new ArrayList<Categoria>(), new HashSet<>());
+		Produto p44 = new Produto(null, "Produto 44", 90.00, new ArrayList<Categoria>(), new HashSet<>());
+		Produto p45 = new Produto(null, "Produto 45", 90.00, new ArrayList<Categoria>(), new HashSet<>());
+		Produto p46 = new Produto(null, "Produto 46", 90.00, new ArrayList<Categoria>(), new HashSet<>());
+		Produto p47 = new Produto(null, "Produto 47", 90.00, new ArrayList<Categoria>(), new HashSet<>());
+		Produto p48 = new Produto(null, "Produto 48", 90.00, new ArrayList<Categoria>(), new HashSet<>());
+		Produto p49 = new Produto(null, "Produto 49", 90.00, new ArrayList<Categoria>(), new HashSet<>());
+		Produto p50 = new Produto(null, "Produto 50", 90.00, new ArrayList<Categoria>(), new HashSet<>());
+
+		cat1.getProdutos()
+				.addAll(Arrays.asList(p12, p13, p14, p15, p16, p17, p18, p19, p20, p21, p22, p23, p24, p25, p26, p27,
+						p28, p29, p30, p31, p32, p33, p34, p35, p36, p37, p38, p39, p40, p41, p42, p43, p44, p45, p46,
+						p47, p48, p49, p50));
+
 		cat2.getProdutos().addAll(Arrays.asList(p2));
 
 		p1.getCategorias().addAll(Arrays.asList(cat1));
@@ -90,6 +134,10 @@ public class DBService {
 
 		categoriaRepository.saveAll(Arrays.asList(cat1, cat2, cat3, cat4, cat5, cat6, cat7));
 		produtoRepository.saveAll(Arrays.asList(p1, p2, p3, p4, p5, p6, p7, p8, p9, p10, p11));
+		
+		produtoRepository.saveAll(Arrays.asList(p12, p13, p14, p15, p16, p17, p18, p19, p20, p21, p22, p23, p24, p25,
+				p26, p27, p28, p29, p30, p31, p32, p33, p34, p35, p36, p37, p38, p39, p40, p41, p42, p43, p44, p45, p46,
+				p47, p48, p49, p50));
 
 		Estado est1 = new Estado(null, "Minas Gerais", new ArrayList<Cidade>());
 		Estado est2 = new Estado(null, "São Paulo", new ArrayList<Cidade>());
