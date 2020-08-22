@@ -32,7 +32,7 @@ public class ClienteService {
 	private String prefix;
 	@Value("${img.profile.size}")
 	private Integer size;
-	
+
 	@Autowired
 	private ImageService imageService;
 	@Autowired
@@ -83,6 +83,17 @@ public class ClienteService {
 
 	public List<Cliente> findAll() {
 		return repository.findAll();
+	}
+
+	public Cliente findByEmail(String email) {
+		var userSpringSecurity = UserService.authenticated();
+		if (userSpringSecurity == null
+				|| !userSpringSecurity.hasRole(Perfil.ADMIN) && !email.equals(userSpringSecurity.getUsername())) {
+			throw new AuthorizationException("Acesso negado");
+		}
+
+		return Optional.of(repository.findByEmail(email)).orElseThrow(() -> new ObjectNotFoundException(
+				"Objeto não encontrado! Id: " + userSpringSecurity.getId() + ", Tipo: " + Cliente.class.getName()));
 	}
 
 	public Page<Cliente> findPage(Integer page, Integer size, String orderBy, String direction) {
