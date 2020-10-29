@@ -13,8 +13,8 @@ spring:
 
   mail:
     host: smtp.gmail.com
-    username: ${UDEMYSBHRESTIJWTS3MSQLMDB3_USERNAME:udemysbhrestijwts3msqlmdb3}
-    password: ${UDEMYSBHRESTIJWTS3MSQLMDB3_PASSWORD:4Jg5g@3VZbI!F^5xw29xaB}
+    username: ${MAIL_USERNAME}
+    password: ${MAIL_PASSWORD}
     properties:
       mail:
         smtp:

@@ -8,16 +8,21 @@ spring:
       max-file-size: 10MB
       max-request-size: 10MB
 
+  jwt:
+    secret: ${JWT_SECRET}
+    expiration: ${JWT_EXPIRATION}
 
-default.sender: ${UDEMYSBHRESTIJWTS3MSQLMDB3_SENDER}
-default.recipient: ${UDEMYSBHRESTIJWTS3MSQLMDB3_RECIPIENT}
+
+default:
+  sender: ${DEFAULT_SENDER}
+  recipient: ${DEFAULT_RECIPIENT}
 
 jwt.secret: SequenciaDeCaracteresParaAssinarToken
 jwt.expiration: 86400000
 
 aws:
-  access_key_id: ${UDEMYSBHRESTIJWTS3MSQLMDB3_AWS_ID}
-  secret_access_key: ${UDEMYSBHRESTIJWTS3MSQLMDB3_AWS_KEY}
+  access_key_id: ${AWS_ID}
+  secret_access_key: ${AWS_KEY}
 s3:
   bucket: udemy-sbhrestijwts3msqlmdb3
   region: sa-east-1

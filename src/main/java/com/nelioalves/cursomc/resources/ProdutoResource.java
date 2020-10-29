@@ -32,13 +32,12 @@ public class ProdutoResource {
 	}
 
 	@GetMapping
-	public ResponseEntity<Page<ProdutoDTO>> findPage(@RequestParam(defaultValue = "") String nome,
+	public ResponseEntity<List<ProdutoDTO>> findPage(@RequestParam(defaultValue = "") String nome,
 			@RequestParam(defaultValue = "") String categorias, @SortDefault(sort = "nome") Pageable pageable) {
 		String nomeDecoded = URL.decodeParam(nome);
 		List<Integer> ids = URL.decodeIntList(categorias);
-		Page<Produto> list = service.search(nomeDecoded, ids, pageable);
-		Page<ProdutoDTO> dto = list.map(ProdutoDTO::new);
-		return ResponseEntity.ok().body(dto);
+		Page<ProdutoDTO> list = service.search(nomeDecoded, ids, pageable).map(ProdutoDTO::new);
+		return ResponseEntity.ok().body(list.getContent());
 	}
 
 }
