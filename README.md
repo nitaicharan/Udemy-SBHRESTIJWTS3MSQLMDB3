@@ -59,6 +59,15 @@ git subtree push --prefix doc/ origin gh-pages
 git push origin `git subtree split --prefix doc master`:gh-pages --force
 ```
 
+## Deploy application
+
+```
+- Get environment variables on https://dashboard.heroku.com/apps/udemy-sbhrestijwts3msqlmdb3/settings
+- Set variables on project-enviroments.env file
+
+docker-compose up --detach
+```
+
 <!-- MARKDOWN LINKS & IMAGES -->
 <!-- https://www.markdownguide.org/basic-syntax/#reference-style-links -->
 

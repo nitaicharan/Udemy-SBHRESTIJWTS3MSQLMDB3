@@ -1,0 +1,38 @@
+version: "3"
+
+services:
+  mariadb:
+    image: mariadb:latest
+    container_name: mariadb
+    env_file:
+      - ./database-enviroments.env
+#    environment:
+#      - MYSQL_USER=root
+#      - MYSQL_PASSWORD=root
+    ports: 
+      - "33060:3306"
+    networks: 
+      - spring
+    
+  udemy_sbhrestijwts3msqlmdb3:
+    build:
+      context: ./
+      dockerfile: Dockerfile
+    image: maven:3-openjdk-15-slim
+    container_name: udemy_sbhrestijwts3msqlmdb3
+    ports: 
+      - "8080:8080"
+    env_file:
+      - ./project-enviroments.env
+    networks: 
+      - spring
+
+
+
+
+networks:
+  spring:
+    ipam:
+      driver: default
+      config:
+        - subnet: 10.172.170.0/24
