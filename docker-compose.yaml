@@ -2,15 +2,15 @@ version: "3"
 
 services:
   mariadb:
-    image: mariadb:latest
-    container_name: mariadb
+    image: mongo:latest
+    container_name: mongo
     env_file:
       - ./database-enviroments.env
 #    environment:
 #      - MYSQL_USER=root
 #      - MYSQL_PASSWORD=root
     ports: 
-      - "33060:3306"
+      - "27017:27017"
     networks: 
       - spring
     
