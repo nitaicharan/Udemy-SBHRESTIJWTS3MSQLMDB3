@@ -24,7 +24,7 @@ This project was part of the Udemy course "Spring Boot, Hibernate, REST, Ionic, 
 - [Certificate][certificate-url]
 
 ### Certificate
-This certificate above verifies that [Nitai Charan][udemy-url] successfully completed the course [Spring Boot, Hibernate, REST, Ionic, JWT, S3, MySQL, MongoDB][course-url] on ??/??/???? as taught by [Nelio Alves][instructor-url] on Udemy. The certificate indicates the entire course was completed as validated by the student.
+This certificate above verifies that [Nitai Charan][udemy-url] successfully completed the course [Spring Boot, Hibernate, REST, Ionic, JWT, S3, MySQL, MongoDB][course-url] on 12/04/2020 as taught by [Nelio Alves][instructor-url] on Udemy. The certificate indicates the entire course was completed as validated by the student.
 
 <p align="center">
   <img src="CERTIFICATE.jpg">
@@ -69,15 +69,15 @@ docker-compose up --detach
 ```
 
 <!-- MARKDOWN LINKS & IMAGES -->
-<!-- https://www.markdownguide.org/basic-syntax/#reference-style-links -->
+<!-- https://markdownguide.org/basic-syntax/#reference-style-links -->
 
 <!-- MARKDOWN LINKS & IMAGES -->
-<!-- https://www.markdownguide.org/basic-syntax/#reference-style-links -->
+<!-- https://markdownguide.org/basic-syntax/#reference-style-links -->
 
 <!-- ALIES README -->
-[course-url]: https://www.udemy.com/course/spring-boot-ionic/
-[instructor-url]: https://www.udemy.com/user/nelio-alves/
-[certificate-url]: #
+[course-url]: https://udemy.com/course/spring-boot-ionic/
+[instructor-url]: https://udemy.com/user/nelio-alves/
+[certificate-url]: https://ude.my/UC-477d4f03-76ff-4721-aad1-87890aaa1955
 
 <!-- CONTACT SHIELDS -->
 
@@ -96,7 +96,7 @@ docker-compose up --detach
 [udemy-shield]: https://img.shields.io/badge/-Udemy-black.svg?logo=udemy&colorB=EC5252&logoColor=white
 [udemy-url]: https://udemy.com/user/nitai-charan/
 [hackerrank-shield]: https://img.shields.io/badge/-HackerRank-white.svg?logo=hackerrank&colorB=2EC866&logoColor=white
-[hackerrank-url]: https://www.hackerrank.com/nitaicharan
+[hackerrank-url]: https://hackerrank.com/nitaicharan
 
 <!-- PROJECT SHIELDS -->
 
